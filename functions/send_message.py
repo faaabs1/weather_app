@@ -3,12 +3,12 @@ import requests
 import os
 
 load_dotenv()
-SLACK_WEBHOOK_URL = os.getenv('SLACK_WEBHOOK_URL')
+SLACK_WEBHOOK = os.getenv('SLACK_WEBHOOK_URL')
 
 
 def send_slack_message(text):
     """Sendet den fertigen Text an Slack."""
-    if "https" not in SLACK_WEBHOOK_URL:
+    if "https" not in SLACK_WEBHOOK:
         print("❌ Fehler: Keine gültige Slack-URL eingetragen.")
         return
 
@@ -16,7 +16,7 @@ def send_slack_message(text):
     
     try:
         response = requests.post(
-            SLACK_WEBHOOK_URL, 
+            SLACK_WEBHOOK, 
             json=payload,
             headers={'Content-Type': 'application/json'}
         )

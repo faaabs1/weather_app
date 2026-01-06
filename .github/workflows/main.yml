@@ -29,6 +29,6 @@ jobs:
       - name: Run Script
         env:
           # Hier übergeben wir die Secrets an das Skript
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         run: python main.py

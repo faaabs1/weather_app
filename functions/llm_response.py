@@ -9,7 +9,7 @@ def generate_ai_message(weather_data_string):
     """
     
     load_dotenv()
-    api_key = os.getenv('API_KEY')
+    api_key = os.getenv('GEMINI_API_KEY')
 
     client = genai.Client(api_key=api_key)
 
