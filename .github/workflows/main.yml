@@ -1,0 +1,34 @@
+name: Daily Weather Briefing
+
+on:
+  schedule:
+    # ACHTUNG: GitHub nutzt UTC-Zeit!
+    # 05:30 UTC ist im Winter 06:30 Wien, im Sommer 07:30 Wien.
+    - cron: '30 5 * * *'
+  
+  # Damit du es auch manuell testen kannst (Play-Button):
+  workflow_dispatch:
+
+jobs:
+  run-weather-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Script
+        env:
+          # Hier übergeben wir die Secrets an das Skript
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: python main.py
