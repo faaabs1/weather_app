@@ -3,7 +3,7 @@ import requests
 import os
 
 load_dotenv()
-SLACK_WEBHOOK = os.getenv('SLACK_WEBHOOK_URL')
+SLACK_WEBHOOK = os.getenv('SLACK_WEBHOOK')
 
 
 def send_slack_message(text):
